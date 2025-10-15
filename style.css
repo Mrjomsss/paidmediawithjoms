@@ -1,0 +1,984 @@
+/* CSS Variables for Maintainability and Theming */
+:root {
+    --primary-color: #ff4c60; /* Core Accent Color */
+    --secondary-color: #e03f53; /* Darker Accent */
+    --light-bg: #ffffff;
+    --light-text: #1a1a1a;
+    --light-header-bg: rgba(255, 255, 255, 0.95);
+    --light-card-bg: #f4f4f4;
+    --dark-bg: #121212;
+    --dark-text: #f1f1f1;
+    --dark-header-bg: rgba(18, 18, 18, 0.95);
+    --dark-card-bg: rgba(255, 255, 255, 0.05);
+    --transition-duration: 0.3s;
+}
+
+/* --- EXPERT REFINEMENT: Modern CSS Reset --- */
+html, body, * { 
+    box-sizing: border-box; 
+}
+*, ::before, ::after {
+    box-sizing: inherit;
+    margin:0; 
+    padding:0;
+}
+/* --- END REFINEMENT --- */
+
+/* Dark/Light Mode Theming using Variables */
+body.light {
+    background: var(--light-bg);
+    color: var(--light-text);
+}
+body.dark {
+    background: var(--dark-bg);
+    color: var(--dark-text);
+}
+
+/* Consolidated Backgrounds */
+header {
+    background: var(--light-header-bg);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+body.dark header {
+    background: var(--dark-header-bg);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.project { background: var(--light-card-bg); }
+body.dark .project { background: var(--dark-card-bg); }
+
+/* Apply primary color dynamically */
+header nav a:hover { color: var(--primary-color); }
+.toggle-mode { border-color: var(--primary-color); }
+.toggle-mode:hover { background: var(--primary-color); color: var(--light-bg); }
+.portfolio-filter button, #contact button { background: var(--primary-color); }
+.portfolio-filter button:hover, #contact button:hover, #ctaButton:hover { background: var(--secondary-color); }
+/* Service card background mix remains the same */
+.service, .testimonial { background: color-mix(in srgb, var(--primary-color) 10%, transparent); }
+
+/* Input/Textarea Styling */
+body.light #contact input, body.light #contact textarea { border-color: #ccc; }
+body.dark #contact input, body.dark #contact textarea {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--dark-text);
+}
+/* A11Y Improvement: Use :focus-visible for keyboard users */
+:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
+}
+/* Reset standard focus for mouse clicks unless they are required for UX */
+*:focus:not(:focus-visible) {
+    outline: none;
+}
+#contact input:focus, #contact textarea:focus {
+    /* Retain hover/active styles */
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary-color) 30%, transparent);
+}
+
+
+/* Base */
+html { scroll-behavior: smooth; }
+body {
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    transition: background var(--transition-duration), color var(--transition-duration);
+    min-height: 100vh;
+}
+/* Style for locking body scroll when mobile menu is open */
+body.menu-open {
+    overflow: hidden;
+}
+
+a { text-decoration:none; color:inherit; }
+button { cursor:pointer; }
+
+/* Header (styles unchanged) */
+header {
+    position:sticky; top:0; left:0; width:100%; z-index:1000;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:1rem 2rem;
+    transition: background var(--transition-duration);
+}
+header .logo { font-weight:800; font-size:1.4rem; color: var(--primary-color); }
+header nav.desktop-nav a { margin-left:1.5rem; font-weight:600; transition:color var(--transition-duration); }
+.toggle-mode {
+    margin-left:1.5rem; padding:0.3rem 0.8rem;
+    border:1px solid; border-radius:0.3rem;
+    transition:var(--transition-duration);
+    font-weight: 600;
+}
+/* Hide mobile menu toggle by default */
+.menu-toggle {
+    display: none; 
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-left: 1rem;
+    padding: 0.5rem;
+    z-index: 1001;
+}
+
+/* NEW: Mobile Navigation Overlay (styles unchanged) */
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--dark-bg); /* Use dark background for high contrast overlay */
+    color: var(--dark-text);
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(100%); /* Start off-screen */
+    transition: transform 0.4s ease-in-out;
+}
+.mobile-nav.is-open {
+    transform: translateX(0); /* Slide into view */
+}
+.mobile-nav a {
+    font-size: 1.8rem;
+    padding: 1rem 0;
+    transition: color 0.3s;
+    color: var(--dark-text);
+}
+.mobile-nav a:hover {
+    color: var(--primary-color);
+}
+
+
+/* Hero (styles unchanged) */
+#hero {
+    min-height:100vh; 
+    display:flex; 
+    flex-direction:column; 
+    justify-content:center; /* Vertically centers the content */
+    align-items:center;
+    text-align:center; 
+    padding:4rem 1.5rem 0; /* Increased top padding to push content down */
+}
+/* Hero Avatar Styling */
+.hero-avatar {
+    margin-bottom: 1.5rem;
+}
+.hero-avatar .avatar-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--primary-color);
+    box-shadow: 0 0 0 10px rgba(255, 76, 96, 0.2);
+    transition: opacity 0.3s ease;
+}
+
+/* Image Switching Logic (Hero) */
+.hero-avatar .dark-mode-img {
+    display: none; /* Hide dark image by default (light mode) */
+}
+body.dark .hero-avatar .light-mode-img {
+    display: none;
+}
+body.dark .hero-avatar .dark-mode-img {
+    display: block;
+}
+
+#hero h1 {
+    font-size:3.5rem; margin-bottom:1.5rem; font-weight:800;
+    white-space: nowrap;
+}
+#hero .subtitle {
+    font-size:1.5rem; font-weight:600; margin-bottom:0.5rem;
+}
+#hero p { font-size:1.1rem; margin-bottom:2rem; max-width:800px; }
+
+/* Hero Buttons Styling (Hero button animation retained) */
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+.hero-buttons button {
+    padding:1rem 2.5rem; font-weight:700; border:none; border-radius:3rem;
+    color:var(--light-bg); transition:var(--transition-duration);
+    text-transform: uppercase; letter-spacing: 1px;
+}
+.hero-buttons .primary-btn {
+    background: var(--primary-color);
+    box-shadow: 0 4px 15px rgba(255, 76, 96, 0.4);
+    /* Apply new animation for the hero button */
+    animation: hero-button-pulse 3s ease-in-out infinite; 
+}
+.hero-buttons .primary-btn:hover {
+    background: var(--secondary-color);
+    /* Pause the pulse on hover */
+    animation-play-state: paused;
+}
+.hero-buttons .secondary-btn {
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    box-shadow: none;
+    padding: 0.8rem 2.3rem; /* Adjust padding for border */
+}
+.hero-buttons .secondary-btn:hover {
+    background: var(--primary-color);
+    color: var(--light-bg);
+}
+
+/* Stats Block Styling (Stat animation retained) */
+.stats-block {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    padding: 2rem 0;
+    width: 100%;
+    max-width: 600px;
+    border-top: 1px solid rgba(255, 76, 96, 0.3);
+    border-bottom: 1px solid rgba(255, 76, 96, 0.3);
+}
+.stat {
+    text-align: center;
+}
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    display: block;
+    line-height: 1;
+    /* Applied heartbeat animation for continuous loop */
+    animation: heartbeat-stat 3s ease-in-out infinite; 
+}
+/* ... (Stat labels and cursor styles unchanged) ... */
+
+
+/* Sections (styles unchanged) */
+section { padding:6rem 2rem; max-width:1100px; margin:auto; }
+section h2 {
+    font-size:2.5rem; text-align:center; margin-bottom:3rem; font-weight:800;
+    position: relative;
+}
+section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 4px;
+    background: var(--primary-color);
+    border-radius: 2px;
+}
+
+/* Services */
+.services { 
+    display:grid; 
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); 
+    gap:2rem; 
+}
+.service {
+    padding:2rem; border-radius:0.75rem; text-align:center;
+    /* Ensure all properties we change on hover are transitionable */
+    transition:transform var(--transition-duration), box-shadow var(--transition-duration), border-color var(--transition-duration);
+    border: 1px solid transparent;
+}
+.service:hover {
+    transform:translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    border-color: var(--primary-color); /* Highlight border on hover */
+}
+
+/* Service Icon and Title Animation on Hover (retained) */
+.service i { 
+    font-size: 2rem; 
+    margin-bottom: 1rem; 
+    color: var(--primary-color); 
+    transition: transform var(--transition-duration), color var(--transition-duration);
+}
+.service h3 { 
+    font-size: 1.25rem; 
+    transition: color var(--transition-duration);
+}
+
+/* Hover state for the entire service card */
+.service:hover i {
+    color: var(--secondary-color); /* Deepen the color */
+    transform: scale(1.1) rotate(-3deg); /* Animate icon: slight scale and rotation */
+}
+.service:hover h3 {
+    color: var(--primary-color); /* Use primary color for title emphasis */
+}
+
+/* --- CHECKLIST STYLES (unchanged) --- */
+.service p {
+    margin-bottom: 1rem; /* Add space between description and list */
+}
+
+.checklist {
+    list-style: none; /* Remove default bullet points */
+    text-align: left;
+    padding: 0;
+    margin-top: 1.5rem;
+    display: flex; /* Flex for vertical stacking */
+    flex-direction: column;
+    gap: 0.5rem; /* Space between list items */
+    font-size: 0.95rem;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+.checklist li {
+    display: flex;
+    align-items: center;
+    color: var(--light-text); /* Ensure good text visibility */
+    transition: color 0.3s;
+}
+body.dark .checklist li {
+    color: var(--dark-text);
+}
+
+.checklist li i {
+    color: var(--primary-color); /* Color the checkmark icon */
+    font-size: 1rem; 
+    margin-right: 0.75rem;
+    /* Reset margins and transitions from the main service icon style */
+    margin-bottom: 0;
+    transition: none; 
+}
+
+/* --- END CHECKLIST STYLES --- */
+
+/* --- EXPERIENCE SECTION REVISIONS (Photo Size Increased) --- */
+.exp-container {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    text-align: left;
+}
+.exp-content {
+    flex: 2; /* Give content more space on desktop */
+}
+
+/* Style for the Subheading */
+.exp-subheading {
+    font-size: 1.5rem; /* Increased size */
+    font-weight: 700; /* Bolder weight for dominance */
+    margin-bottom: 1.25rem;
+    color: var(--primary-color); /* Emphasize with color */
+}
+
+/* 1. Image Handling FIX: Removed 'content' property and replaced with display toggle */
+.exp-avatar-wrap {
+    flex: 1; /* Keep avatar wrap on the right */
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0;
+}
+/* NEW: Image Switching Logic for Experience Section */
+.exp-avatar-wrap .dark-mode-img {
+    display: none; /* Hide dark image by default (light mode) */
+}
+body.dark .exp-avatar-wrap .light-mode-img {
+    display: none;
+}
+body.dark .exp-avatar-wrap .dark-mode-img {
+    display: block;
+}
+
+.exp-image {
+    /* INCREASED IMAGE SIZE HERE */
+    width: 350px; 
+    height: 350px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 8px solid var(--primary-color);
+    box-shadow: 0 0 20px rgba(255, 76, 96, 0.4);
+    transition: border 0.3s, box-shadow 0.3s;
+}
+
+
+/* 2. Stat Highlighting Block (unchanged) */
+.exp-stats-highlight-block {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    border: 2px solid var(--primary-color); /* Strong border */
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--primary-color) 8%, transparent); /* Subtle background */
+    box-shadow: 0 4px 15px rgba(255, 76, 96, 0.3); /* Adds depth */
+}
+
+.exp-stat-item {
+    text-align: center;
+    flex: 1;
+    min-width: 100px;
+    padding: 0.5rem;
+}
+
+.exp-stat-number {
+    font-size: 2.5rem; /* Massive size for impact */
+    font-weight: 800; /* Extra bold */
+    color: var(--primary-color);
+    display: block;
+    line-height: 1;
+}
+
+.exp-stat-label {
+    font-size: 0.95rem;
+    font-weight: 600; /* Bolder label */
+    display: block;
+    margin-top: 0.5rem;
+    opacity: 0.9;
+}
+
+
+/* Platform Lists Styling (unchanged) */
+.platform-lists {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 2rem;
+    margin-top: 2.5rem; 
+}
+.platform-group {
+    flex: 1;
+    min-width: 250px; 
+}
+.platform-group h4 {
+    font-size: 1.15rem;
+    margin-bottom: 1rem;
+    color: var(--secondary-color);
+    border-bottom: 2px solid rgba(255, 76, 96, 0.2);
+    padding-bottom: 0.5rem;
+}
+.platform-list {
+    list-style: none;
+    padding: 0;
+}
+.platform-list li {
+    margin-bottom: 0.75rem; 
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+}
+.platform-list i {
+    color: var(--primary-color);
+    margin-right: 0.75rem;
+    width: 1.25rem; 
+    text-align: center;
+    font-size: 1.1rem; 
+}
+
+/* Apply floating animation to the image and the stat items (unchanged) */
+.floating-image, .floating-stat {
+    animation: float-up-down 5s ease-in-out infinite;
+}
+/* --- END EXPERIENCE SECTION REVISIONS --- */
+
+
+/* Portfolio (Now Impact & Portfolio) */
+/* The filter and project list styles are no longer needed, 
+   but the #portfolio selector itself is kept for layout */
+#portfolio { 
+    padding-bottom: 3rem; /* Adjusted padding to match previous impact section */
+}
+
+
+/* Testimonials (styles unchanged) */
+.testimonials {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+.testimonial {
+    padding: 2rem; border-radius: 0.75rem;
+    display: flex; align-items: flex-start;
+    border-top: 5px solid var(--primary-color);
+}
+.testimonial img {
+    width: 80px; height: 80px; border-radius: 50%;
+    margin-right: 1.5rem; flex-shrink: 0;
+    border: 3px solid var(--primary-color);
+}
+.testimonial blockquote {
+    font-style: italic; margin-bottom: 0.5rem;
+    opacity: 0.9;
+}
+.testimonial cite {
+    font-weight: 700;
+    display: block;
+}
+.testimonial small {
+    display: block; font-weight: 400; opacity: 0.7;
+}
+
+/* --- BRAND SHOWCASE STYLES (unchanged) --- */
+.brand-showcase {
+    margin-top: 5rem; /* Space below testimonials */
+    padding-top: 3rem;
+    border-top: 1px solid rgba(255, 76, 96, 0.2);
+}
+
+.brand-showcase-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.logo-strip {
+    overflow: hidden; /* Clips the logos outside the viewing area */
+    position: relative;
+    white-space: nowrap; /* Forces content onto a single line */
+    padding: 1rem 0;
+}
+
+.logo-slide {
+    display: inline-flex; /* Allows infinite expansion */
+    animation: scroll-left 30s linear infinite; /* 30s animation for smooth, continuous loop */
+}
+
+.logo {
+    height: 40px; /* Fixed height for consistency */
+    width: auto;
+    object-fit: contain;
+    margin: 0 2rem; /* Spacing between logos */
+    opacity: 0.7; /* Subtler appearance */
+    transition: opacity 0.3s;
+    /* Apply grayscale filter for a sleek, monochrome look */
+    filter: grayscale(100%); 
+}
+
+/* Hover effect on logo strip to pause the animation */
+.logo-strip:hover .logo-slide {
+    animation-play-state: paused;
+}
+/* Highlight on hover */
+.logo:hover {
+    opacity: 1;
+    filter: none;
+}
+/* --- END BRAND SHOWCASE STYLES --- */
+
+/* --- NEW CLIENT STATS SHOWCASE STYLES --- */
+.client-stats-showcase {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 4rem auto 0; /* Add top margin to separate from logos */
+    padding: 2.5rem 1rem;
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--primary-color) 8%, transparent); /* Subtle background accent */
+    border: 1px solid rgba(255, 76, 96, 0.15);
+}
+
+/* Apply the custom slow heartbeat animation to the number class */
+.heartbeat-stat-number {
+    animation: heartbeat-stat-slow 4s ease-in-out infinite; /* Slower 4s pulse */
+}
+/* Reuse existing impact stat styles for visual consistency (font size, color, etc.) */
+/* NOTE: The classes .impact-stat, .impact-number, and .impact-label are already defined later in this CSS file. */
+
+/* --- END NEW CLIENT STATS SHOWCASE STYLES --- */
+
+
+/* Contact (styles unchanged) */
+#contact form {
+    display: grid; gap: 1rem; max-width: 600px; margin: 0 auto 2rem;
+}
+#contact input, #contact textarea {
+    padding: 1rem; border: 1px solid; border-radius: 5px;
+    font-size: 1rem; width: 100%;
+    transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
+}
+#contact textarea { resize: vertical; }
+#contact button {
+    padding: 1rem 2rem; color: var(--light-bg); border: none;
+    border-radius: 5px; font-weight: 700; font-size: 1.1rem;
+    transition: background 0.3s;
+}
+.contact-connect { text-align: center; }
+.social-links a {
+    font-size: 2rem; margin: 0 0.5rem; color: var(--primary-color);
+    transition: transform 0.3s; display: inline-block;
+}
+.social-links a:hover {
+    transform: scale(1.1);
+}
+
+/* Sticky CTA button (styles unchanged) */
+#ctaButton {
+    position:fixed; bottom:2rem; right:2rem; padding:1rem 1.5rem;
+    color:var(--light-bg); border:none; border-radius:3rem; font-weight:700; cursor:pointer;
+    z-index:1000; transition:var(--transition-duration);
+    box-shadow: 0 5px 15px rgba(255, 76, 96, 0.6);
+    /* This button's unique heartbeat */
+    animation: heartbeat-button 2s ease-in-out infinite;
+}
+
+/* Footer (styles unchanged) */
+footer {
+    text-align: center;
+    padding: 1.5rem 2rem;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* Animations */
+section:not(#hero) { opacity:0; transform:translateY(50px); transition:all 0.6s ease-out; }
+
+/* Keyframe Animations */
+
+/* NEW: Logo Scroll Animation */
+@keyframes scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* Move exactly half the width (the first set of logos) */
+}
+
+@keyframes float-up-down {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px); /* Subtle vertical float */
+    }
+}
+
+@keyframes hero-button-pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(255, 76, 96, 0.4);
+    }
+    50% {
+        transform: scale(1.03); /* Subtle growth */
+        box-shadow: 0 0 0 0 rgba(255, 76, 96, 0.7), 0 4px 20px rgba(255, 76, 96, 0.7); /* Adds a spreading glow effect */
+    }
+}
+
+@keyframes heartbeat-button {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05); /* Slightly larger */
+        box-shadow: 0 8px 20px rgba(255, 76, 96, 0.8); /* More prominent shadow */
+    }
+}
+
+/* Existing heartbeat stat (fast) */
+@keyframes heartbeat-stat {
+    0%, 100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-5px); /* Subtle lift */
+        opacity: 0.9;
+    }
+}
+
+/* NEW: Slower heartbeat pulse for the new stats */
+@keyframes heartbeat-stat-slow {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.02); /* Very subtle growth */
+        opacity: 0.95;
+    }
+}
+
+
+/* Responsive Optimizations (Modified exp-container for mobile) */
+@media(max-width:768px){
+    header { padding: 1rem; }
+    header nav.desktop-nav, header .toggle-mode { display: none; }
+    .menu-toggle { display: block; }
+    
+    #hero h1 { font-size: 2.5rem; white-space: normal; }
+    #hero .subtitle { font-size: 1.2rem; }
+    #hero p { font-size: 1rem; }
+    .hero-buttons { flex-direction: column; width: 80%; }
+    .hero-buttons button { width: 100%; }
+    .stats-block { gap: 1.5rem; padding: 1rem 0; }
+    .stat-number { font-size: 2rem; }
+
+    section { padding: 4rem 1rem; }
+    section h2 { font-size: 2rem; }
+    
+    /* Mobile style for Experience Section */
+    .exp-container {
+        flex-direction: column; /* Stack content and image */
+        text-align: center;
+    }
+    .exp-content {
+        order: 2; /* Put content below the image */
+        flex: auto;
+    }
+    .exp-avatar-wrap {
+        order: 1; /* Put image first */
+        padding: 0 0 2rem 0;
+    }
+    
+    /* INCREASED IMAGE SIZE FOR MOBILE */
+    .exp-image {
+        width: 300px;
+        height: 300px;
+    }
+
+    /* Stats block on mobile */
+    .exp-stats-highlight-block {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    .exp-stat-number {
+        font-size: 2rem; /* Adjusted for smaller screens */
+    }
+
+    .platform-lists {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: left;
+    }
+
+    .testimonials {
+        grid-template-columns: 1fr;
+    }
+    .testimonial {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+    .testimonial img {
+        margin: 0 0 1rem 0;
+    }
+
+    /* Brand Showcase Mobile Adjustments */
+    .brand-showcase {
+        margin-top: 3rem;
+        padding-top: 2rem;
+    }
+    .brand-showcase-title {
+        font-size: 1.25rem;
+    }
+    .logo-strip {
+        padding: 0.5rem 0;
+    }
+    .logo {
+        height: 30px; /* Smaller size for mobile */
+        margin: 0 1.5rem;
+    }
+
+    /* New Client Stats Showcase Mobile Adjustments */
+    .client-stats-showcase {
+        flex-direction: column;
+        text-align: center;
+        margin-top: 2rem;
+        padding: 2rem 1rem;
+    }
+
+
+    #ctaButton { bottom: 1rem; right: 1rem; padding: 0.8rem 1.2rem; }
+}
+
+/* --- IMPACT & PORTFOLIO SECTION STYLES (now inside #portfolio) --- */
+
+.impact-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Main content (graph/stats) is 2/3, links are 1/3 */
+    gap: 2rem;
+    align-items: stretch;
+}
+
+.impact-main {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    border-radius: 12px;
+    background: var(--light-card-bg); /* Use light card background */
+    border: 1px solid rgba(255, 76, 96, 0.1);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+body.dark .impact-main {
+    background: var(--dark-card-bg);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Graph Visualization Styling */
+.animated-graph-container {
+    height: 300px; /* Fixed height for visual consistency */
+    width: 100%;
+    margin-bottom: 2rem;
+    position: relative;
+    padding: 1rem;
+}
+.graph-visual {
+    height: 100%;
+    width: 100%;
+    background: color-mix(in srgb, var(--primary-color) 3%, transparent); /* Very subtle background for the graph area */
+    border-radius: 8px;
+    padding: 2rem 1rem 0; /* Pushes content down a bit */
+    position: relative;
+}
+.graph-title {
+    position: absolute;
+    top: 0.5rem;
+    left: 1rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+/* SVG Line Chart Styling */
+.graph-visual svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.chart-line {
+    stroke-dasharray: 600; /* Set a value larger than the line length */
+    stroke-dashoffset: 600;
+    animation: draw-line 3s ease-out forwards;
+}
+.chart-dot {
+    opacity: 0;
+    animation: fade-in-dot 0.5s 2.8s forwards; /* Delay to appear after the line is drawn */
+}
+
+/* Stats Row Styling */
+.impact-stats-row {
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem 0;
+    margin-top: 1rem;
+}
+
+.impact-stat {
+    text-align: center;
+}
+.impact-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    display: block;
+    line-height: 1.2;
+}
+.impact-label {
+    font-size: 0.95rem;
+    font-weight: 500;
+    display: block;
+    opacity: 0.8;
+}
+
+/* Stat Counting Animation Initial State */
+.impact-number.count-animate {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease-out; /* The counting will happen while this transition runs */
+    /* Ensure heartbeat is removed if it's applied globally to stat numbers */
+    animation: none; 
+}
+
+/* Stat Counting Animation Final State (applied by JS) */
+.impact-number.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Link Card Styling */
+.impact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.impact-link-card {
+    position: relative;
+    padding: 1.5rem;
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--primary-color) 8%, transparent); /* Primary accent background */
+    border-left: 5px solid var(--primary-color);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+.impact-link-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(255, 76, 96, 0.2);
+}
+
+.impact-link-card i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 0.75rem;
+}
+
+.impact-link-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.impact-link-card p {
+    font-size: 0.95rem;
+    opacity: 0.8;
+}
+
+/* Hidden link overlay for clickability */
+.impact-link-card a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Ensures link is clickable */
+}
+
+
+/* Responsive Adjustments for Impact Section */
+@media(max-width: 900px) {
+    .impact-grid {
+        grid-template-columns: 1fr; /* Stack on smaller screens */
+    }
+    .impact-main {
+        order: 1;
+    }
+    .impact-links {
+        order: 2;
+    }
+    .animated-graph-container {
+        height: 250px; /* Slightly smaller height on mobile */
+    }
+}
+
+@media(max-width: 550px) {
+    .impact-stats-row {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+}
+
+
+/* Keyframe Animations for Graph */
+@keyframes draw-line {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+@keyframes fade-in-dot {
+    to {
+        opacity: 1;
+    }
+}

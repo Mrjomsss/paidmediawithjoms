@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jomari Oslob - Digital Marketing Specialist</title>
+    
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/Ue_WfC0Q9GvPq_J8GZ5pLg.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body class="light">
+
+    <header role="banner">
+        <a href="#hero" class="logo">Joms Oslob</a>
+        <nav role="navigation" aria-label="Main Navigation" class="desktop-nav">
+            <a href="#hero">Home</a>
+            <a href="#services">Services</a>
+            <a href="#experience">Experience</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <button class="toggle-mode" id="modeToggle" aria-label="Toggle Dark/Light Mode">Dark Mode</button>
+        <button class="menu-toggle" id="menuToggle" aria-controls="mobile-nav" aria-expanded="false" aria-label="Open Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <nav id="mobile-nav" class="mobile-nav" aria-hidden="true" role="navigation" aria-label="Mobile Navigation">
+        <a href="#hero">Home</a>
+        <a href="#services">Services</a>
+        <a href="#experience">Experience</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <section id="hero" aria-label="Introduction" role="main">
+        
+        <div class="hero-avatar">
+            <img id="avatar-light" src="images/Me1.png" alt="Jomari Oslob profile picture" class="avatar-img light-mode-img">
+            <img id="avatar-dark" src="images/Me2.png" alt="Jomari Oslob profile picture for Dark Mode" class="avatar-img dark-mode-img">
+        </div>
+
+        <p class="subtitle">Digital Marketing Specialist</p>
+        <h1>I help brands <span id="typed-text" style="color:var(--primary-color)"></span><span class="cursor" style="color:var(--primary-color)"></span></h1>
+        <p>Experienced Digital Marketer with over six years of experience specializing in crafting data-driven strategies that deliver measurable results, from SEO and PPC to social media and email marketing.</p>
+        
+        <div class="hero-buttons">
+            <button class="primary-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Hire Me!</button>
+            <button class="secondary-btn" onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">View Portfolio</button>
+        </div>
+        
+        <div class="stats-block">
+            <div class="stat">
+                <span class="stat-number">$2M+</span>
+                <span class="stat-label">Total Ad Spent</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">6+</span>
+                <span class="stat-label">Years Experience</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">40+</span>
+                <span class="stat-label">Ad Platforms</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" aria-label="My Professional Services">
+        <h2>What I Do</h2>
+        <div class="services">
+            <div class="service">
+                <i class="fas fa-bullseye"></i>
+                <h3> PPC & Campaign Optimization</h3>
+                <p>Expert in planning, launching, and optimizing high-performing ad campaigns across social, local, and programmatic platforms.</p>
+                <ul class="checklist">
+                    <li><i class="fas fa-check-circle"></i> Multi-Platform Ad Setup</li>
+                    <li><i class="fas fa-check-circle"></i> Performance Optimization</li>
+                    <li><i class="fas fa-check-circle"></i> ROI & Conversion Tracking</li>
+                </ul>
+            </div>
+            <div class="service">
+                <i class="fas fa-share-alt"></i>
+                <h3> Social Media Management</h3>
+                <p>Manages 20+ social media pages with strategies that boost engagement, growth, and audience retention.</p>
+                <ul class="checklist">
+                    <li><i class="fas fa-check-circle"></i> Content Strategy & Planning</li>
+                    <li><i class="fas fa-check-circle"></i> Analytics & Growth Management</li>
+                    <li><i class="fas fa-check-circle"></i> Cross-Platform Branding</li>
+                </ul>
+            </div>
+            <div class="service">
+                <i class="fas fa-palette"></i>
+                <h3> Creative Design</h3>
+                <p>Designs impactful visuals and marketing videos that align with brand identity and ad objectives.</p>
+                <ul class="checklist">
+                    <li><i class="fas fa-check-circle"></i> Visual & Video Creation</li>
+                    <li><i class="fas fa-check-circle"></i> Brand-Aligned Campaign Assets</li>
+                    <li><i class="fas fa-check-circle"></i> Tools: Photoshop, Canva, Premiere Pro</li>
+                </ul>
+            </div>
+            <div class="service">
+                <i class="fas fa-robot"></i>
+                <h3> AI-Enhanced Optimization</h3>
+                <p>Uses AI for ad creative generation, performance analysis, and faster campaign testing.</p>
+                <ul class="checklist">
+                    <li><i class="fas fa-check-circle"></i> AI Image & Video Generation</li>
+                    <li><i class="fas fa-check-circle"></i> Automated Copywriting</li>
+                    <li><i class="fas fa-check-circle"></i> AI-Based Performance Insights</li>
+                </ul>
+            </div>
+            <div class="service">
+                <i class="fas fa-search"></i>
+                <h3> SEO</h3>
+                <p>Creates and optimizes web content to improve search rankings and organic traffic.</p>
+                <ul class="checklist">
+                    <li><i class="fas fa-check-circle"></i> Blog & Web Content Writing</li>
+                    <li><i class="fas fa-check-circle"></i> Keyword & On-Page Optimization</li>
+                    <li><i class="fas fa-check-circle"></i> Organic Growth Tracking</li>
+                </ul>
+            </div>
+            <div class="service">
+                <i class="fas fa-laptop-code"></i>
+                <h3> Web Design & Development</h3>
+                <p>Builds and maintains responsive, user-friendly websites with modern technologies.</p>
+                <ul class="checklist">
+                    <li><i class="fas fa-check-circle"></i> WordPress & GitHub Integration</li>
+                    <li><i class="fas fa-check-circle"></i> Basic HTML, CSS, JavaScript</li>
+                    <li><i class="fas fa-check-circle"></i> UI/UX-Focused Development</li>
+                </ul>
+            </div>
+            <div class="service">
+                <i class="fas fa-paper-plane"></i>
+                <h3> Email Marketing</h3>
+                <p>Designs and manages automated email campaigns focused on conversion and retention.</p>
+                <ul class="checklist">
+                    <li><i class="fas fa-check-circle"></i> Mailchimp Automation</li>
+                    <li><i class="fas fa-check-circle"></i> Audience Segmentation</li>
+                    <li><i class="fas fa-check-circle"></i> Conversion Optimization</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" aria-label="My Professional Experience and Platform Mastery">
+        <h2>Experience & Platforms</h2>
+        <div class="exp-container">
+            
+            <div class="exp-content">
+                <h3 class="exp-subheading">Proven Success Across Global Advertising Platforms</h3>
+                <p>With over **6 years** of hands-on experience managing **multi-million-dollar ad budgets**, I’ve mastered campaign strategy and optimization across social, search, and programmatic channels. My expertise spans eCommerce, iGaming, and lead generation, consistently delivering exceptional ROI and performance growth across **30+ advertising platforms worldwide**.</p>
+                
+                <div class="exp-stats-highlight-block">
+                    <div class="exp-stat-item floating-stat">
+                        <span class="exp-stat-number">$2M+</span>
+                        <span class="exp-stat-label">Total Ad Spent</span>
+                    </div>
+                    <div class="exp-stat-item floating-stat">
+                        <span class="exp-stat-number">30+</span>
+                        <span class="exp-stat-label">Advertising Platforms</span>
+                    </div>
+                </div>
+
+                <div class="platform-lists">
+                    <div class="platform-group">
+                        <h4>Social & Search Platforms</h4>
+                        <ul class="platform-list">
+                            <li><i class="fab fa-facebook-f"></i> Meta (Facebook, Instagram)</li>
+                            <li><i class="fab fa-google"></i> Google Ads (PMax, Search, Video, Display)</li>
+                            <li><i class="fab fa-linkedin"></i> Linkedin</li>
+                            <li><i class="fab fa-tiktok"></i> Tiktok Ads</li>
+                        </ul>
+                    </div>
+
+                    <div class="platform-group">
+                        <h4>Local & Programmatic Platforms</h4>
+                        <ul class="platform-list">
+                            <li><i class="fas fa-location-dot"></i> Local Media Platform: Grab</li>
+                            <li><i class="fas fa-code-branch"></i> Rivetraffic</li>
+                            <li><i class="fas fa-star"></i> Trafficstars</li>
+                            <li><i class="fas fa-crosshairs"></i> Zeropark</li>
+                            <li><i class="fas fa-laptop-code"></i> Ironsource</li>
+                            <li><i class="fas fa-plus"></i> 20+ more...</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exp-avatar-wrap">
+                <img src="images/Me1.png" alt="Jomari Oslob Professional Experience Image" class="exp-image light-mode-img floating-image">
+                <img src="images/Me2.png" alt="Jomari Oslob Professional Experience Image for Dark Mode" class="exp-image dark-mode-img floating-image">
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" aria-label="Performance Overview and Project Portfolio">
+        <h2>Performance & Portfolio</h2>
+        <div class="impact-grid">
+            
+            <div class="impact-main">
+                <div class="animated-graph-container">
+                    <div class="graph-visual" aria-label="Animated growth graph showing consistent upward trend">
+                        <svg viewBox="0 0 400 200" preserveAspectRatio="none">
+                            <polyline
+                                fill="none" 
+                                stroke="var(--primary-color)"
+                                stroke-width="4"
+                                points="0,180 50,140 100,160 150,120 200,150 250,90 300,100 350,50 400,20"
+                                class="chart-line"
+                            />
+                            <circle cx="400" cy="20" r="8" fill="var(--primary-color)" class="chart-dot" />
+                        </svg>
+                        <p class="graph-title">Performance Over Last 12 Months</p>
+                    </div>
+                </div>
+
+                <div class="impact-stats-row">
+                    <div class="impact-stat">
+                        <span class="impact-number count-animate" data-target="90000" data-format="K+">0</span>
+                        <span class="impact-label">Leads Generated</span>
+                    </div>
+                    <div class="impact-stat">
+                        <span class="impact-number count-animate" data-target="1000000000" data-format="B+">0</span>
+                        <span class="impact-label">Total Impressions</span>
+                    </div>
+                    <div class="impact-stat">
+                        <span class="impact-number count-animate" data-target="190" data-format="%">0</span>
+                        <span class="impact-label">Avg ROAS Achieved</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="impact-links">
+                <div class="impact-link-card">
+                    <i class="fas fa-briefcase"></i>
+                    <h3>Complete Portfolio</h3>
+                    <p>View all 15+ projects and brand engagements.</p>
+                    <a href="#portfolio-detail" aria-label="View Complete Portfolio"></a>
+                </div>
+                <div class="impact-link-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>In-Depth Case Study</h3>
+                    <p>Read the step-by-step strategy behind a 190% ROAS growth.</p>
+                    <a href="#" aria-label="Read In-Depth Case Study"></a>
+                </div>
+                <div class="impact-link-card">
+                    <i class="fas fa-video"></i>
+                    <h3>Introduction Video</h3>
+                    <p>A quick 90-second video introduction to my expertise.</p>
+                    <a href="#" aria-label="Watch Introduction Video"></a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="testimonials" aria-label="Client Testimonials and Brand Showcase">
+        <h2>Trusted by Growing Businesses</h2>
+        <div class="testimonials">
+            <div class="testimonial">
+                <img src="https://via.placeholder.com/80/ff4c60/ffffff?text=C1" alt="Tech Startup Client Avatar">
+                <div class="testimonial-details">
+                    <blockquote>"Joms transformed our campaigns! His data-driven approach resulted in incredible ROI and strategic insight."</blockquote>
+                    <cite>Anna M.<small> - Marketing Director, Tech Startup</small></cite>
+                </div>
+            </div>
+            <div class="testimonial">
+                <img src="https://via.placeholder.com/80/ff4c60/ffffff?text=C2" alt="E-commerce Founder Client Avatar">
+                <div class="testimonial-details">
+                    <blockquote>"Our social media engagement skyrocketed thanks to Joms' expertise. He's a true growth partner."</blockquote>
+                    <cite>Ben K.<small> - E-commerce Founder</small></cite>
+                </div>
+            </div>
+            <div class="testimonial">
+                <img src="https://via.placeholder.com/80/ff4c60/ffffff?text=C3" alt="Head of Content Client Avatar">
+                <div class="testimonial-details">
+                    <blockquote>"Professional, results-driven, and highly creative. Joms’ A/B testing philosophy is a game-changer. Highly recommend!"</blockquote>
+                    <cite>Sarah L.<small> - Head of Content</small></cite>
+                </div>
+            </div>
+        </div>
+
+        <div class="brand-showcase">
+            <h3 class="brand-showcase-title">Proud to Have Worked With These Amazing Brands</h3>
+            <div class="logo-strip">
+                <div class="logo-slide">
+                    <img class="logo" src="images/advoca.png" alt="Brand Logo A">
+                    <img class="logo" src="images/AFC.png" alt="Brand Logo B">
+                    <img class="logo" src="images/BP.png" alt="Brand Logo C">
+                    <img class="logo" src="images/ciscor.png" alt="Brand Logo D">
+                    <img class="logo" src="images/CP.png" alt="Brand Logo E">
+                    <img class="logo" src="images/Fundline.png" alt="Brand Logo F">
+                    <img class="logo" src="images/JT.png" alt="Brand Logo G">
+                    <img class="logo" src="images/Luckyi.png" alt="Brand Logo H">
+                    <img class="logo" src="images/Okbet.png" alt="Brand Logo A">
+                    <img class="logo" src="images/Opulence.png" alt="Brand Logo B">
+                    <img class="logo" src="images/Tekna.png" alt="Brand Logo C">
+                    <img class="logo" src="images/UAS.png" alt="Brand Logo D">
+                    <img class="logo" src="images/Vista.png" alt="Brand Logo E">
+                    <img class="logo" src="images/BP.png" alt="Brand Logo F">
+                    <img class="logo" src="images/CP.png" alt="Brand Logo G">
+                    <img class="logo" src="images/Okbet.png" alt="Brand Logo H">
+                    </div>
+            </div>
+        </div>
+        
+        <div class="client-stats-showcase">
+            <div class="impact-stat">
+                <span class="impact-number count-animate heartbeat-stat-number" data-target="13" data-format="">0</span>
+                <span class="impact-label">Happy Clients/Employers</span>
+            </div>
+            <div class="impact-stat">
+                <span class="impact-number count-animate heartbeat-stat-number" data-target="10" data-format="+">0</span>
+                <span class="impact-label">Industries Served</span>
+            </div>
+            <div class="impact-stat">
+                <span class="impact-number count-animate heartbeat-stat-number" data-target="197" data-format="%">0</span>
+                <span class="impact-label">Avg ROI Achieved</span>
+            </div>
+        </div>
+        </section>
+
+     <section id="contact" aria-label="Contact Form and Information">
+        <h2>Ready to Scale?</h2>
+        
+        <form 
+            action="mailto:jomaroslob@gmail.com?subject=Project%20Inquiry%20from%20Website" 
+            method="POST" 
+            enctype="text/plain" 
+            onsubmit="alert('Thank you for your inquiry! Joms will be in touch soon. Please check your email client (Outlook, Gmail, etc.) for the draft message.');"
+        >
+            <input 
+                type="text" 
+                placeholder="Your Name" 
+                name="name" 
+                required 
+                aria-label="Your Name"
+            >
+            <input 
+                type="email" 
+                placeholder="Your Business Email" 
+                name="email" 
+                required 
+                aria-label="Your Business Email"
+            >
+            <input 
+                type="text" 
+                placeholder="Company Name (Optional)" 
+                name="company" 
+                aria-label="Company Name"
+            >
+            <textarea 
+                placeholder="Tell me about your project and goals..." 
+                name="message" 
+                rows="6" 
+                required 
+                aria-label="Your Message"
+            ></textarea>
+            <button type="submit">Send Project Inquiry</button>
+        </form>
+
+        <div class="contact-connect">
+            <p>Or connect directly:</p>
+            <div class="social-links">
+                <a href="mailto:jomaroslob@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Email Jomari Oslob">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="tel:+639300835292" target="_blank" rel="noopener noreferrer" aria-label="Call Jomari Oslob">
+                    <i class="fas fa-phone"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/jomari-oslob-8a70b1248/" target="_blank" rel="noopener noreferrer" aria-label="Jomari Oslob LinkedIn Profile">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+    <button id="ctaButton" class="primary-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" aria-label="Hire Me Button, Scrolls to Contact Section">
+        Hire Me
+    </button>
+
+    <footer>
+        <p>&copy; 2025 Jomari Oslob. All rights reserved. | <a href="tel:+639300835292" style="color: inherit; text-decoration: underline;">0930-083-5292</a> | <a href="mailto:jomaroslob@gmail.com" style="color: inherit; text-decoration: underline;">jomaroslob@gmail.com</a></p>
+    </footer>
+
+    <script src="script.js" defer></script> 
+</body>
+</html>
