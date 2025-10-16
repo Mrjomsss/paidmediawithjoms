@@ -1,7 +1,7 @@
 /* CSS Variables for Maintainability and Theming */
 :root {
-    --primary-color: #ff4c60; /* Core Accent Color */
-    --secondary-color: #e03f53; /* Darker Accent */
+    --primary-color: #ff4c60; 
+    --secondary-color: #e03f53; 
     --light-bg: #ffffff;
     --light-text: #1a1a1a;
     --light-header-bg: rgba(255, 255, 255, 0.95);
@@ -11,6 +11,9 @@
     --dark-header-bg: rgba(18, 18, 18, 0.95);
     --dark-card-bg: rgba(255, 255, 255, 0.05);
     --transition-duration: 0.3s;
+    /* MODIFIED: High-Contrast CTA Button uses Maroon colors */
+    --cta-primary: #A52A2A; /* Deep Crimson Maroon */
+    --cta-secondary: #701A1A; /* Darker Maroon for hover */
 }
 
 /* --- EXPERT REFINEMENT: Modern CSS Reset --- */
@@ -51,8 +54,7 @@ header nav a:hover { color: var(--primary-color); }
 .toggle-mode { border-color: var(--primary-color); }
 .toggle-mode:hover { background: var(--primary-color); color: var(--light-bg); }
 .portfolio-filter button, #contact button { background: var(--primary-color); }
-.portfolio-filter button:hover, #contact button:hover, #ctaButton:hover { background: var(--secondary-color); }
-/* Service card background mix remains the same */
+.portfolio-filter button:hover, #contact button:hover { background: var(--secondary-color); }
 .service, .testimonial { background: color-mix(in srgb, var(--primary-color) 10%, transparent); }
 
 /* Input/Textarea Styling */
@@ -67,12 +69,10 @@ body.dark #contact input, body.dark #contact textarea {
     outline: 3px solid var(--primary-color);
     outline-offset: 2px;
 }
-/* Reset standard focus for mouse clicks unless they are required for UX */
 *:focus:not(:focus-visible) {
     outline: none;
 }
 #contact input:focus, #contact textarea:focus {
-    /* Retain hover/active styles */
     border-color: var(--primary-color);
     box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary-color) 30%, transparent);
 }
@@ -86,15 +86,13 @@ body {
     transition: background var(--transition-duration), color var(--transition-duration);
     min-height: 100vh;
 }
-/* Style for locking body scroll when mobile menu is open */
 body.menu-open {
     overflow: hidden;
 }
-
 a { text-decoration:none; color:inherit; }
 button { cursor:pointer; }
 
-/* Header (styles unchanged) */
+/* Header */
 header {
     position:sticky; top:0; left:0; width:100%; z-index:1000;
     display:flex; justify-content:space-between; align-items:center;
@@ -109,7 +107,6 @@ header nav.desktop-nav a { margin-left:1.5rem; font-weight:600; transition:color
     transition:var(--transition-duration);
     font-weight: 600;
 }
-/* Hide mobile menu toggle by default */
 .menu-toggle {
     display: none; 
     background: none;
@@ -121,25 +118,25 @@ header nav.desktop-nav a { margin-left:1.5rem; font-weight:600; transition:color
     z-index: 1001;
 }
 
-/* NEW: Mobile Navigation Overlay (styles unchanged) */
+/* Mobile Navigation Overlay */
 .mobile-nav {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--dark-bg); /* Use dark background for high contrast overlay */
+    background: var(--dark-bg); 
     color: var(--dark-text);
     z-index: 999;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transform: translateX(100%); /* Start off-screen */
+    transform: translateX(100%); 
     transition: transform 0.4s ease-in-out;
 }
 .mobile-nav.is-open {
-    transform: translateX(0); /* Slide into view */
+    transform: translateX(0); 
 }
 .mobile-nav a {
     font-size: 1.8rem;
@@ -152,17 +149,16 @@ header nav.desktop-nav a { margin-left:1.5rem; font-weight:600; transition:color
 }
 
 
-/* Hero (styles unchanged) */
+/* Hero */
 #hero {
     min-height:100vh; 
     display:flex; 
     flex-direction:column; 
-    justify-content:center; /* Vertically centers the content */
+    justify-content:center; 
     align-items:center;
     text-align:center; 
-    padding:4rem 1.5rem 0; /* Increased top padding to push content down */
+    padding:4rem 1.5rem 0; 
 }
-/* Hero Avatar Styling */
 .hero-avatar {
     margin-bottom: 1.5rem;
 }
@@ -175,10 +171,8 @@ header nav.desktop-nav a { margin-left:1.5rem; font-weight:600; transition:color
     box-shadow: 0 0 0 10px rgba(255, 76, 96, 0.2);
     transition: opacity 0.3s ease;
 }
-
-/* Image Switching Logic (Hero) */
 .hero-avatar .dark-mode-img {
-    display: none; /* Hide dark image by default (light mode) */
+    display: none; 
 }
 body.dark .hero-avatar .light-mode-img {
     display: none;
@@ -186,7 +180,6 @@ body.dark .hero-avatar .light-mode-img {
 body.dark .hero-avatar .dark-mode-img {
     display: block;
 }
-
 #hero h1 {
     font-size:3.5rem; margin-bottom:1.5rem; font-weight:800;
     white-space: nowrap;
@@ -195,8 +188,6 @@ body.dark .hero-avatar .dark-mode-img {
     font-size:1.5rem; font-weight:600; margin-bottom:0.5rem;
 }
 #hero p { font-size:1.1rem; margin-bottom:2rem; max-width:800px; }
-
-/* Hero Buttons Styling (Hero button animation retained) */
 .hero-buttons {
     display: flex;
     gap: 1rem;
@@ -210,12 +201,10 @@ body.dark .hero-avatar .dark-mode-img {
 .hero-buttons .primary-btn {
     background: var(--primary-color);
     box-shadow: 0 4px 15px rgba(255, 76, 96, 0.4);
-    /* Apply new animation for the hero button */
     animation: hero-button-pulse 3s ease-in-out infinite; 
 }
 .hero-buttons .primary-btn:hover {
     background: var(--secondary-color);
-    /* Pause the pulse on hover */
     animation-play-state: paused;
 }
 .hero-buttons .secondary-btn {
@@ -223,14 +212,12 @@ body.dark .hero-avatar .dark-mode-img {
     border: 2px solid var(--primary-color);
     color: var(--primary-color);
     box-shadow: none;
-    padding: 0.8rem 2.3rem; /* Adjust padding for border */
+    padding: 0.8rem 2.3rem; 
 }
 .hero-buttons .secondary-btn:hover {
     background: var(--primary-color);
     color: var(--light-bg);
 }
-
-/* Stats Block Styling (Stat animation retained) */
 .stats-block {
     display: flex;
     justify-content: center;
@@ -250,16 +237,29 @@ body.dark .hero-avatar .dark-mode-img {
     color: var(--primary-color);
     display: block;
     line-height: 1;
-    /* Applied heartbeat animation for continuous loop */
     animation: heartbeat-stat 3s ease-in-out infinite; 
 }
-/* ... (Stat labels and cursor styles unchanged) ... */
+.stat-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-top: 0.25rem;
+}
+.cursor {
+    display: inline-block;
+    width: 3px;
+    height: 1.1em; 
+    background-color: var(--primary-color);
+    animation: blink 0.7s infinite;
+    transform: translateY(0.1em);
+}
 
 
-/* Sections (styles unchanged) */
+/* Sections */
 section { padding:6rem 2rem; max-width:1100px; margin:auto; }
 section h2 {
-    font-size:2.5rem; text-align:center; margin-bottom:3rem; font-weight:800;
+    font-size:2.5rem; text-align:center; 
+    margin-bottom: 3.5rem; 
+    font-weight:800;
     position: relative;
 }
 section h2::after {
@@ -282,17 +282,14 @@ section h2::after {
 }
 .service {
     padding:2rem; border-radius:0.75rem; text-align:center;
-    /* Ensure all properties we change on hover are transitionable */
     transition:transform var(--transition-duration), box-shadow var(--transition-duration), border-color var(--transition-duration);
     border: 1px solid transparent;
 }
 .service:hover {
     transform:translateY(-8px);
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    border-color: var(--primary-color); /* Highlight border on hover */
+    border-color: var(--primary-color); 
 }
-
-/* Service Icon and Title Animation on Hover (retained) */
 .service i { 
     font-size: 2rem; 
     margin-bottom: 1rem; 
@@ -301,58 +298,49 @@ section h2::after {
 }
 .service h3 { 
     font-size: 1.25rem; 
+    margin-bottom: 1rem; 
     transition: color var(--transition-duration);
 }
-
-/* Hover state for the entire service card */
 .service:hover i {
-    color: var(--secondary-color); /* Deepen the color */
-    transform: scale(1.1) rotate(-3deg); /* Animate icon: slight scale and rotation */
+    color: var(--secondary-color); 
+    transform: scale(1.1) rotate(-3deg); 
 }
 .service:hover h3 {
-    color: var(--primary-color); /* Use primary color for title emphasis */
+    color: var(--primary-color); 
 }
-
-/* --- CHECKLIST STYLES (unchanged) --- */
 .service p {
-    margin-bottom: 1rem; /* Add space between description and list */
+    margin-bottom: 1rem; 
 }
-
 .checklist {
-    list-style: none; /* Remove default bullet points */
+    list-style: none; 
     text-align: left;
     padding: 0;
-    margin-top: 1.5rem;
-    display: flex; /* Flex for vertical stacking */
+    margin-top: 1.75rem; 
+    display: flex; 
     flex-direction: column;
-    gap: 0.5rem; /* Space between list items */
+    gap: 0.5rem; 
     font-size: 0.95rem;
     font-weight: 500;
     opacity: 0.9;
 }
-
 .checklist li {
     display: flex;
     align-items: center;
-    color: var(--light-text); /* Ensure good text visibility */
+    color: var(--light-text); 
     transition: color 0.3s;
 }
 body.dark .checklist li {
     color: var(--dark-text);
 }
-
 .checklist li i {
-    color: var(--primary-color); /* Color the checkmark icon */
+    color: var(--primary-color); 
     font-size: 1rem; 
     margin-right: 0.75rem;
-    /* Reset margins and transitions from the main service icon style */
     margin-bottom: 0;
     transition: none; 
 }
 
-/* --- END CHECKLIST STYLES --- */
-
-/* --- EXPERIENCE SECTION REVISIONS (Photo Size Increased) --- */
+/* Experience Section (Desktop Styles) */
 .exp-container {
     display: flex;
     gap: 3rem;
@@ -360,27 +348,24 @@ body.dark .checklist li {
     text-align: left;
 }
 .exp-content {
-    flex: 2; /* Give content more space on desktop */
+    flex: 2; 
 }
-
-/* Style for the Subheading */
 .exp-subheading {
-    font-size: 1.5rem; /* Increased size */
-    font-weight: 700; /* Bolder weight for dominance */
+    font-size: 1.5rem; 
+    font-weight: 700; 
     margin-bottom: 1.25rem;
-    color: var(--primary-color); /* Emphasize with color */
+    color: var(--primary-color); 
 }
-
-/* 1. Image Handling FIX: Removed 'content' property and replaced with display toggle */
 .exp-avatar-wrap {
-    flex: 1; /* Keep avatar wrap on the right */
+    flex: 1; 
     display: flex;
     justify-content: center;
     padding: 2rem 0;
 }
-/* NEW: Image Switching Logic for Experience Section */
+
+/* FIX: Dark/Light Mode Swap for Experience Image */
 .exp-avatar-wrap .dark-mode-img {
-    display: none; /* Hide dark image by default (light mode) */
+    display: none; 
 }
 body.dark .exp-avatar-wrap .light-mode-img {
     display: none;
@@ -390,7 +375,7 @@ body.dark .exp-avatar-wrap .dark-mode-img {
 }
 
 .exp-image {
-    /* INCREASED IMAGE SIZE HERE */
+    /* DESKTOP SIZE */
     width: 350px; 
     height: 350px;
     border-radius: 50%;
@@ -399,55 +384,46 @@ body.dark .exp-avatar-wrap .dark-mode-img {
     box-shadow: 0 0 20px rgba(255, 76, 96, 0.4);
     transition: border 0.3s, box-shadow 0.3s;
 }
-
-
-/* 2. Stat Highlighting Block (unchanged) */
 .exp-stats-highlight-block {
     display: flex;
     justify-content: space-between;
     gap: 1.5rem;
     margin: 2rem 0;
     padding: 1.5rem;
-    border: 2px solid var(--primary-color); /* Strong border */
+    border: 2px solid var(--primary-color); 
     border-radius: 8px;
-    background: color-mix(in srgb, var(--primary-color) 8%, transparent); /* Subtle background */
-    box-shadow: 0 4px 15px rgba(255, 76, 96, 0.3); /* Adds depth */
+    background: color-mix(in srgb, var(--primary-color) 8%, transparent); 
+    box-shadow: 0 4px 15px rgba(255, 76, 96, 0.3); 
 }
-
 .exp-stat-item {
     text-align: center;
     flex: 1;
     min-width: 100px;
     padding: 0.5rem;
 }
-
 .exp-stat-number {
-    font-size: 2.5rem; /* Massive size for impact */
-    font-weight: 800; /* Extra bold */
+    font-size: 2.5rem; 
+    font-weight: 800; 
     color: var(--primary-color);
     display: block;
     line-height: 1;
 }
-
 .exp-stat-label {
     font-size: 0.95rem;
-    font-weight: 600; /* Bolder label */
+    font-weight: 600; 
     display: block;
     margin-top: 0.5rem;
     opacity: 0.9;
 }
-
-
-/* Platform Lists Styling (unchanged) */
 .platform-lists {
     display: flex;
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
     gap: 2rem;
-    margin-top: 2.5rem; 
+    margin-top: 2.5rem;
 }
 .platform-group {
     flex: 1;
-    min-width: 250px; 
+    min-width: 250px;
 }
 .platform-group h4 {
     font-size: 1.15rem;
@@ -461,7 +437,7 @@ body.dark .exp-avatar-wrap .dark-mode-img {
     padding: 0;
 }
 .platform-list li {
-    margin-bottom: 0.75rem; 
+    margin-bottom: 0.75rem;
     font-size: 1rem;
     display: flex;
     align-items: center;
@@ -469,27 +445,149 @@ body.dark .exp-avatar-wrap .dark-mode-img {
 .platform-list i {
     color: var(--primary-color);
     margin-right: 0.75rem;
-    width: 1.25rem; 
+    width: 1.25rem;
     text-align: center;
-    font-size: 1.1rem; 
+    font-size: 1.1rem;
 }
-
-/* Apply floating animation to the image and the stat items (unchanged) */
 .floating-image, .floating-stat {
     animation: float-up-down 5s ease-in-out infinite;
 }
-/* --- END EXPERIENCE SECTION REVISIONS --- */
 
-
-/* Portfolio (Now Impact & Portfolio) */
-/* The filter and project list styles are no longer needed, 
-   but the #portfolio selector itself is kept for layout */
+/* Portfolio */
 #portfolio { 
-    padding-bottom: 3rem; /* Adjusted padding to match previous impact section */
+    padding-bottom: 3rem; 
+}
+.impact-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr; 
+    gap: 2rem;
+    align-items: stretch;
+}
+.impact-main {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    border-radius: 12px;
+    background: var(--light-card-bg); 
+    border: 1px solid rgba(255, 76, 96, 0.1);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+body.dark .impact-main {
+    background: var(--dark-card-bg);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+.animated-graph-container {
+    height: 300px; 
+    width: 100%;
+    margin-bottom: 2rem;
+    position: relative;
+    padding: 1rem;
+}
+.graph-visual {
+    height: 100%;
+    width: 100%;
+    background: color-mix(in srgb, var(--primary-color) 3%, transparent); 
+    border-radius: 8px;
+    padding: 2rem 1rem 0; 
+    position: relative;
+}
+.graph-title {
+    position: absolute;
+    top: 0.5rem;
+    left: 1rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+.graph-visual svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+.chart-line {
+    stroke-dasharray: 600; 
+    stroke-dashoffset: 600;
+    animation: draw-line 3s ease-out forwards;
+}
+.chart-dot {
+    opacity: 0;
+    animation: fade-in-dot 0.5s 2.8s forwards; 
+}
+.impact-stats-row {
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem 0;
+    margin-top: 1rem;
+}
+.impact-stat {
+    text-align: center;
+}
+.impact-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    display: block;
+    line-height: 1.2;
+}
+.impact-label {
+    font-size: 0.95rem;
+    font-weight: 500;
+    display: block;
+    opacity: 0.8;
+}
+.impact-number.count-animate {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease-out; 
+    animation: none; 
+}
+.impact-number.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+.impact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.impact-link-card {
+    position: relative;
+    padding: 1.5rem;
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--primary-color) 8%, transparent); 
+    border-left: 5px solid var(--primary-color);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+.impact-link-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(255, 76, 96, 0.2);
+}
+.impact-link-card i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 0.75rem;
+}
+.impact-link-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+.impact-link-card p {
+    font-size: 0.95rem;
+    opacity: 0.8;
+}
+.impact-link-card a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; 
 }
 
-
-/* Testimonials (styles unchanged) */
+/* Testimonials */
 .testimonials {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -517,12 +615,56 @@ body.dark .exp-avatar-wrap .dark-mode-img {
     display: block; font-weight: 400; opacity: 0.7;
 }
 
-/* --- BRAND SHOWCASE STYLES (unchanged) --- */
+/* Brand Showcase */
 .brand-showcase {
-    margin-top: 5rem; /* Space below testimonials */
+    margin-top: 5rem; 
     padding-top: 3rem;
     border-top: 1px solid rgba(255, 76, 96, 0.2);
 }
+
+/* NEW: Featured Brands Grid Styling */
+.featured-brands-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+    max-width: 800px; /* Limit width for visual focus */
+    margin: 0 auto 4rem; /* Center and add large bottom margin */
+    padding: 1.5rem 0;
+}
+
+.featured-brand-item {
+    text-align: center;
+    padding: 1rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+.featured-brand-item:hover {
+    transform: translateY(-5px);
+}
+
+.featured-logo {
+    height: 100px; /* Larger size */
+    width: auto;
+    object-fit: contain;
+    filter: none; /* Ensure full color */
+    opacity: 1; 
+    transition: all 0.3s;
+    
+    /* Maroon highlight to distinguish them */
+    border-radius: 8px;
+    border: 3px solid var(--cta-primary); 
+    padding: 10px 15px; 
+    box-shadow: 0 5px 15px rgba(165, 42, 42, 0.3); /* Maroon shadow */
+    background: var(--light-bg); /* Ensure contrast in light mode */
+}
+/* Dark mode adjustment for featured logos background */
+body.dark .featured-logo {
+    background: var(--dark-bg);
+}
+/* END NEW */
+
 
 .brand-showcase-title {
     font-size: 1.5rem;
@@ -533,65 +675,51 @@ body.dark .exp-avatar-wrap .dark-mode-img {
     text-transform: uppercase;
     letter-spacing: 1px;
 }
-
 .logo-strip {
-    overflow: hidden; /* Clips the logos outside the viewing area */
+    overflow: hidden; 
     position: relative;
-    white-space: nowrap; /* Forces content onto a single line */
+    white-space: nowrap; 
     padding: 1rem 0;
 }
-
 .logo-slide {
-    display: inline-flex; /* Allows infinite expansion */
-    animation: scroll-left 30s linear infinite; /* 30s animation for smooth, continuous loop */
+    display: inline-flex; 
+    animation: scroll-left 30s linear infinite;
 }
-
 .logo {
-    height: 40px; /* Fixed height for consistency */
+    height: 40px; 
     width: auto;
     object-fit: contain;
-    margin: 0 2rem; /* Spacing between logos */
-    opacity: 0.7; /* Subtler appearance */
+    margin: 0 2rem; 
+    opacity: 0.7; 
     transition: opacity 0.3s;
-    /* Apply grayscale filter for a sleek, monochrome look */
     filter: grayscale(100%); 
 }
-
-/* Hover effect on logo strip to pause the animation */
 .logo-strip:hover .logo-slide {
     animation-play-state: paused;
 }
-/* Highlight on hover */
 .logo:hover {
     opacity: 1;
     filter: none;
 }
-/* --- END BRAND SHOWCASE STYLES --- */
 
-/* --- NEW CLIENT STATS SHOWCASE STYLES --- */
+/* Client Stats Showcase */
 .client-stats-showcase {
     display: flex;
     justify-content: space-around;
     align-items: center;
     gap: 1.5rem;
-    margin: 4rem auto 0; /* Add top margin to separate from logos */
+    margin: 4rem auto 0; 
     padding: 2.5rem 1rem;
     border-radius: 12px;
-    background: color-mix(in srgb, var(--primary-color) 8%, transparent); /* Subtle background accent */
+    background: color-mix(in srgb, var(--primary-color) 8%, transparent); 
     border: 1px solid rgba(255, 76, 96, 0.15);
 }
-
-/* Apply the custom slow heartbeat animation to the number class */
 .heartbeat-stat-number {
-    animation: heartbeat-stat-slow 4s ease-in-out infinite; /* Slower 4s pulse */
+    animation: heartbeat-stat-slow 4s ease-in-out infinite; 
 }
-/* Reuse existing impact stat styles for visual consistency (font size, color, etc.) */
-/* NOTE: The classes .impact-stat, .impact-number, and .impact-label are already defined later in this CSS file. */
-
-/* --- END NEW CLIENT STATS SHOWCASE STYLES --- */
 
 
-/* Contact (styles unchanged) */
+/* Contact */
 #contact form {
     display: grid; gap: 1rem; max-width: 600px; margin: 0 auto 2rem;
 }
@@ -615,17 +743,38 @@ body.dark .exp-avatar-wrap .dark-mode-img {
     transform: scale(1.1);
 }
 
-/* Sticky CTA button (styles unchanged) */
+/* Sticky CTA button (UPDATED FOR FIXED POSITION AND MAROON COLOR) */
 #ctaButton {
-    position:fixed; bottom:2rem; right:2rem; padding:1rem 1.5rem;
-    color:var(--light-bg); border:none; border-radius:3rem; font-weight:700; cursor:pointer;
-    z-index:1000; transition:var(--transition-duration);
-    box-shadow: 0 5px 15px rgba(255, 76, 96, 0.6);
-    /* This button's unique heartbeat */
+    position: fixed; /* Ensures it stays visible while scrolling */
+    bottom: 2rem; 
+    right: 2rem; 
+    padding: 1rem 1.5rem;
+    
+    /* MODIFIED: High Contrast Deep Maroon */
+    background: var(--cta-primary); 
+    color: var(--light-bg); 
+    
+    border: none; 
+    border-radius: 3rem; 
+    font-weight: 700; 
+    cursor: pointer;
+    z-index: 1000; /* High stacking order */
+    transition: var(--transition-duration);
+    
+    /* MODIFIED: Updated Shadow to match new Maroon color (A52A2A -> 165, 42, 42) */
+    box-shadow: 0 5px 15px rgba(165, 42, 42, 0.6);
     animation: heartbeat-button 2s ease-in-out infinite;
 }
 
-/* Footer (styles unchanged) */
+/* MODIFIED: Use darker maroon on hover */
+#ctaButton:hover {
+    background: var(--cta-secondary);
+    animation-play-state: paused;
+    box-shadow: 0 5px 15px rgba(165, 42, 42, 0.8);
+}
+
+
+/* Footer */
 footer {
     text-align: center;
     padding: 1.5rem 2rem;
@@ -636,75 +785,97 @@ footer {
 /* Animations */
 section:not(#hero) { opacity:0; transform:translateY(50px); transition:all 0.6s ease-out; }
 
-/* Keyframe Animations */
-
-/* NEW: Logo Scroll Animation */
+/* Keyframe Animations (heartbeat-button updated) */
 @keyframes scroll-left {
     0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); } /* Move exactly half the width (the first set of logos) */
+    100% { transform: translateX(-50%); } 
 }
-
 @keyframes float-up-down {
     0%, 100% {
         transform: translateY(0);
     }
     50% {
-        transform: translateY(-8px); /* Subtle vertical float */
+        transform: translateY(-8px); 
     }
 }
-
 @keyframes hero-button-pulse {
     0%, 100% {
         transform: scale(1);
         box-shadow: 0 4px 15px rgba(255, 76, 96, 0.4);
     }
     50% {
-        transform: scale(1.03); /* Subtle growth */
-        box-shadow: 0 0 0 0 rgba(255, 76, 96, 0.7), 0 4px 20px rgba(255, 76, 96, 0.7); /* Adds a spreading glow effect */
+        transform: scale(1.03); 
+        box-shadow: 0 0 0 0 rgba(255, 76, 96, 0.7), 0 4px 20px rgba(255, 76, 96, 0.7); 
     }
 }
-
 @keyframes heartbeat-button {
     0%, 100% {
         transform: scale(1);
     }
     50% {
-        transform: scale(1.05); /* Slightly larger */
-        box-shadow: 0 8px 20px rgba(255, 76, 96, 0.8); /* More prominent shadow */
+        transform: scale(1.05); 
+        /* MODIFIED: Updated Shadow Color to Maroon */
+        box-shadow: 0 8px 20px rgba(165, 42, 42, 0.8); 
     }
 }
-
-/* Existing heartbeat stat (fast) */
 @keyframes heartbeat-stat {
     0%, 100% {
         transform: translateY(0);
         opacity: 1;
     }
     50% {
-        transform: translateY(-5px); /* Subtle lift */
+        transform: translateY(-5px); 
         opacity: 0.9;
     }
 }
-
-/* NEW: Slower heartbeat pulse for the new stats */
 @keyframes heartbeat-stat-slow {
     0%, 100% {
         transform: scale(1);
         opacity: 1;
     }
     50% {
-        transform: scale(1.02); /* Very subtle growth */
+        transform: scale(1.02); 
         opacity: 0.95;
+    }
+}
+@keyframes draw-line {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+@keyframes fade-in-dot {
+    to {
+        opacity: 1;
     }
 }
 
 
-/* Responsive Optimizations (Modified exp-container for mobile) */
+/* ====================================================================== */
+/* === MOBILE OPTIMIZATION (MAX 768px) === */
+/* ====================================================================== */
+
 @media(max-width:768px){
     header { padding: 1rem; }
-    header nav.desktop-nav, header .toggle-mode { display: none; }
-    .menu-toggle { display: block; }
     
+    /* CORRECTION: Hide only the desktop navigation */
+    header nav.desktop-nav { 
+        display: none; 
+    }
+    
+    /* CORRECTION: Ensure Mode Toggle is visible and positioned well */
+    .toggle-mode { 
+        display: block; 
+        order: -1; 
+        margin-left: 0; 
+        padding: 0.4rem 0.6rem; 
+    }
+    
+    /* Ensure mobile menu icon is visible */
+    .menu-toggle { 
+        display: block; 
+        margin-left: auto; 
+    }
+
     #hero h1 { font-size: 2.5rem; white-space: normal; }
     #hero .subtitle { font-size: 1.2rem; }
     #hero p { font-size: 1rem; }
@@ -716,41 +887,60 @@ section:not(#hero) { opacity:0; transform:translateY(50px); transition:all 0.6s 
     section { padding: 4rem 1rem; }
     section h2 { font-size: 2rem; }
     
-    /* Mobile style for Experience Section */
+    /* EXPERIENCE SECTION - Image to Top for Mobile (Maintained) */
     .exp-container {
-        flex-direction: column; /* Stack content and image */
+        flex-direction: column; 
         text-align: center;
     }
     .exp-content {
-        order: 2; /* Put content below the image */
+        order: 2; 
         flex: auto;
     }
     .exp-avatar-wrap {
-        order: 1; /* Put image first */
-        padding: 0 0 2rem 0;
+        order: 1; 
+        padding: 2rem 0 0 0; 
     }
     
-    /* INCREASED IMAGE SIZE FOR MOBILE */
     .exp-image {
-        width: 300px;
-        height: 300px;
+        width: 250px; 
+        height: 250px; 
     }
-
-    /* Stats block on mobile */
+    
+    /* REVISION: FIXING OVERLAP using CSS Grid for stability */
     .exp-stats-highlight-block {
-        flex-direction: column;
-        gap: 1.5rem;
-    }
-    .exp-stat-number {
-        font-size: 2rem; /* Adjusted for smaller screens */
+        display: grid; 
+        grid-template-columns: 1fr 1fr; 
+        gap: 1rem 0.5rem;
+        margin: 1.5rem 0;
+        padding: 1rem;
     }
 
+    .exp-stat-item {
+        flex-basis: auto; 
+        min-width: auto; 
+        padding: 0.5rem;
+    }
+
+    .exp-stat-number {
+        font-size: 1.8rem; 
+        line-height: 1.2;
+    }
+
+    .exp-stat-label {
+        font-size: 0.85rem; 
+    }
+    
     .platform-lists {
         flex-direction: column;
         gap: 1.5rem;
         text-align: left;
     }
+    .platform-group {
+        min-width: 100%;
+    }
 
+
+    /* Testimonials */
     .testimonials {
         grid-template-columns: 1fr;
     }
@@ -771,186 +961,10 @@ section:not(#hero) { opacity:0; transform:translateY(50px); transition:all 0.6s 
     .brand-showcase-title {
         font-size: 1.25rem;
     }
-    .logo-strip {
-        padding: 0.5rem 0;
-    }
-    .logo {
-        height: 30px; /* Smaller size for mobile */
-        margin: 0 1.5rem;
-    }
-
-    /* New Client Stats Showcase Mobile Adjustments */
-    .client-stats-showcase {
-        flex-direction: column;
-        text-align: center;
-        margin-top: 2rem;
-        padding: 2rem 1rem;
-    }
-
-
-    #ctaButton { bottom: 1rem; right: 1rem; padding: 0.8rem 1.2rem; }
-}
-
-/* --- IMPACT & PORTFOLIO SECTION STYLES (now inside #portfolio) --- */
-
-.impact-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr; /* Main content (graph/stats) is 2/3, links are 1/3 */
-    gap: 2rem;
-    align-items: stretch;
-}
-
-.impact-main {
-    display: flex;
-    flex-direction: column;
-    padding: 2rem;
-    border-radius: 12px;
-    background: var(--light-card-bg); /* Use light card background */
-    border: 1px solid rgba(255, 76, 96, 0.1);
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-}
-body.dark .impact-main {
-    background: var(--dark-card-bg);
-    border-color: rgba(255, 255, 255, 0.1);
-}
-
-/* Graph Visualization Styling */
-.animated-graph-container {
-    height: 300px; /* Fixed height for visual consistency */
-    width: 100%;
-    margin-bottom: 2rem;
-    position: relative;
-    padding: 1rem;
-}
-.graph-visual {
-    height: 100%;
-    width: 100%;
-    background: color-mix(in srgb, var(--primary-color) 3%, transparent); /* Very subtle background for the graph area */
-    border-radius: 8px;
-    padding: 2rem 1rem 0; /* Pushes content down a bit */
-    position: relative;
-}
-.graph-title {
-    position: absolute;
-    top: 0.5rem;
-    left: 1rem;
-    font-weight: 600;
-    font-size: 0.9rem;
-    opacity: 0.7;
-}
-
-/* SVG Line Chart Styling */
-.graph-visual svg {
-    display: block;
-    width: 100%;
-    height: 100%;
-    overflow: visible;
-}
-
-.chart-line {
-    stroke-dasharray: 600; /* Set a value larger than the line length */
-    stroke-dashoffset: 600;
-    animation: draw-line 3s ease-out forwards;
-}
-.chart-dot {
-    opacity: 0;
-    animation: fade-in-dot 0.5s 2.8s forwards; /* Delay to appear after the line is drawn */
-}
-
-/* Stats Row Styling */
-.impact-stats-row {
-    display: flex;
-    justify-content: space-around;
-    padding: 1rem 0;
-    margin-top: 1rem;
-}
-
-.impact-stat {
-    text-align: center;
-}
-.impact-number {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: var(--primary-color);
-    display: block;
-    line-height: 1.2;
-}
-.impact-label {
-    font-size: 0.95rem;
-    font-weight: 500;
-    display: block;
-    opacity: 0.8;
-}
-
-/* Stat Counting Animation Initial State */
-.impact-number.count-animate {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.5s ease-out; /* The counting will happen while this transition runs */
-    /* Ensure heartbeat is removed if it's applied globally to stat numbers */
-    animation: none; 
-}
-
-/* Stat Counting Animation Final State (applied by JS) */
-.impact-number.animated {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-
-/* Link Card Styling */
-.impact-links {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-.impact-link-card {
-    position: relative;
-    padding: 1.5rem;
-    border-radius: 12px;
-    background: color-mix(in srgb, var(--primary-color) 8%, transparent); /* Primary accent background */
-    border-left: 5px solid var(--primary-color);
-    transition: transform 0.3s, box-shadow 0.3s;
-    cursor: pointer;
-}
-.impact-link-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(255, 76, 96, 0.2);
-}
-
-.impact-link-card i {
-    font-size: 2rem;
-    color: var(--primary-color);
-    margin-bottom: 0.75rem;
-}
-
-.impact-link-card h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
-    font-weight: 700;
-}
-
-.impact-link-card p {
-    font-size: 0.95rem;
-    opacity: 0.8;
-}
-
-/* Hidden link overlay for clickability */
-.impact-link-card a {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1; /* Ensures link is clickable */
-}
-
-
-/* Responsive Adjustments for Impact Section */
-@media(max-width: 900px) {
+    
+    /* Portfolio */
     .impact-grid {
-        grid-template-columns: 1fr; /* Stack on smaller screens */
+        grid-template-columns: 1fr;
     }
     .impact-main {
         order: 1;
@@ -959,26 +973,43 @@ body.dark .impact-main {
         order: 2;
     }
     .animated-graph-container {
-        height: 250px; /* Slightly smaller height on mobile */
+        height: 250px;
+    }
+
+    /* NEW: Mobile Adjustment for Featured Brands */
+    .featured-brands-grid {
+        grid-template-columns: repeat(3, 1fr); 
+        gap: 1rem;
+        margin: 0 auto 2rem;
+    }
+    .featured-logo {
+        height: 50px; /* Smaller on mobile */
+        padding: 5px;
+        border: 2px solid var(--cta-primary);
+    }
+    /* END NEW */
+
+
+    /* Sticky CTA Button for Mobile (Original position maintained) */
+    #ctaButton { 
+        bottom: 1rem; 
+        right: 1rem; 
+        padding: 0.8rem 1.2rem; 
     }
 }
 
+/* --- OPTIMIZATION FOR SMALLEST MOBILE SCREENS (Under 550px) --- */
 @media(max-width: 550px) {
+    /* Further reduce image size for smallest phones */
+    .exp-image {
+        width: 200px;
+        height: 200px;
+    }
+    .services {
+        grid-template-columns: 1fr;
+    }
     .impact-stats-row {
         flex-direction: column;
         gap: 1.5rem;
-    }
-}
-
-
-/* Keyframe Animations for Graph */
-@keyframes draw-line {
-    to {
-        stroke-dashoffset: 0;
-    }
-}
-@keyframes fade-in-dot {
-    to {
-        opacity: 1;
     }
 }
