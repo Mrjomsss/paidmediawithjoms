@@ -210,12 +210,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. Portfolio filter and 5. Portfolio reveal info are removed as the data model changed.
     // The previous portfolio projects are replaced by the Impact Grid.
 
-    // --- Typing Animation ---
+    // --- Typing Animation (Optimized with Intersection Observer) ---
     const typedTextElement = document.getElementById('typed-text');
+    const heroSection = document.getElementById('hero'); // Target element to observe
     const phrases = ["scale profits.", "drive traffic.", "optimize campaigns.", "build growth."];
     let phraseIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
+    let animationFrameId = null; // To hold the requestAnimationFrame ID
+    let isObserving = false; // Flag to track if the animation is currently running
 
     // Time-based variables for animation control
     const typingSpeed = 100; // Time per character (ms)
@@ -226,7 +229,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let isPaused = false;
 
     function type(currentTime) {
-        if (!typedTextElement) return;
+        if (!typedTextElement || !isObserving) {
+            // Stop if the element is not found or not in view
+            return; 
+        }
 
         // Calculate time elapsed since last frame
         if (!lastFrameTime) lastFrameTime = currentTime;
@@ -238,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 isPaused = false;
                 totalDelayTime = 0;
             } else {
-                requestAnimationFrame(type);
+                animationFrameId = requestAnimationFrame(type);
                 lastFrameTime = currentTime;
                 return;
             }
@@ -250,7 +256,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (totalDelayTime >= currentSpeed) {
             totalDelayTime = 0; // Reset accumulated time
 
-            // --- CORRECTION APPLIED HERE ---
             if (isDeleting) {
                 // Deleting
                 typedTextElement.textContent = currentPhrase.substring(0, charIndex - 1);
@@ -259,7 +264,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     isDeleting = false;
                     phraseIndex = (phraseIndex + 1) % phrases.length;
                     isPaused = true;
-                    // Reset totalDelayTime to account for the time spent processing
                     totalDelayTime = 0;
                 }
             } else {
@@ -271,16 +275,40 @@ document.addEventListener('DOMContentLoaded', () => {
                     isPaused = true;
                 }
             }
-            // --- END CORRECTION ---
         }
 
         totalDelayTime += deltaTime;
         lastFrameTime = currentTime;
-        requestAnimationFrame(type);
+        animationFrameId = requestAnimationFrame(type);
     }
 
-    if (typedTextElement) {
-        // Start the animation loop
-        requestAnimationFrame(type);
+    if (typedTextElement && heroSection) {
+        const typingObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (!isObserving) {
+                        // Start the animation only if it's not already running
+                        isObserving = true;
+                        animationFrameId = requestAnimationFrame(type);
+                    }
+                } else {
+                    // Pause the animation when out of view
+                    isObserving = false;
+                    if (animationFrameId) {
+                        cancelAnimationFrame(animationFrameId);
+                        animationFrameId = null;
+                    }
+                    // Reset time/state variables for a cleaner restart
+                    lastFrameTime = 0;
+                    totalDelayTime = 0;
+                }
+            });
+        }, {
+            // A threshold of 0.5 means the animation starts/stops when 50% of the element is visible
+            threshold: 0.5
+        });
+
+        typingObserver.observe(heroSection);
     }
+    // --- END Typing Animation Optimization ---
 });
