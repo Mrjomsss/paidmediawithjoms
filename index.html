@@ -115,27 +115,8 @@
                     <li><i class="fas fa-check-circle"></i> AI Image & Video Generation</li>
                     <li><i class="fas fa-check-circle"></i> Automated Copywriting</li>
                     <li><i class="fas fa-check-circle"></i> AI-Based Performance Insights</li>
-                </ul>
-            </div>
-            <div class="service">
-                <i class="fas fa-search"></i>
-                <h3> SEO</h3>
-                <p>Creates and optimizes web content to improve search rankings and organic traffic.</p>
-                <ul class="checklist">
-                    <li><i class="fas fa-check-circle"></i> Blog & Web Content Writing</li>
-                    <li><i class="fas fa-check-circle"></i> Keyword & On-Page Optimization</li>
-                    <li><i class="fas fa-check-circle"></i> Organic Growth Tracking</li>
-                </ul>
-            </div>
-            <div class="service">
-                <i class="fas fa-laptop-code"></i>
-                <h3> Web Design & Development</h3>
-                <p>Builds and maintains responsive, user-friendly websites with modern technologies.</p>
-                <ul class="checklist">
-                    <li><i class="fas fa-check-circle"></i> WordPress & GitHub Integration</li>
-                    <li><i class="fas fa-check-circle"></i> Basic HTML, CSS, JavaScript</li>
-                    <li><i class="fas fa-check-circle"></i> UI/UX-Focused Development</li>
-                </ul>
+                
+            
             </div>
             <div class="service">
                 <i class="fas fa-paper-plane"></i>
@@ -451,31 +432,33 @@
         </div>
         </section>
 
-    <section id="contact" aria-label="Contact Form and Information">
-        <h2>Ready to Scale?</h2>
+    <section class="contact-section">
+    <div class="content-container">
+        <h2 class="headline">Ready to Scale Your Campaigns?</h2>
         
-        <form action="mailto:jomaroslob@gmail.com" onsubmit="alert('Thank you for your inquiry! Joms will be in touch soon.');">
-            <input type="text" placeholder="Your Name" name="name" required aria-label="Your Name">
-            <input type="email" placeholder="Your Business Email" name="email" required aria-label="Your Business Email">
-            <input type="text" placeholder="Company Name (Optional)" name="company" aria-label="Company Name">
-            <textarea placeholder="Tell me about your project and goals..." name="message" rows="6" required aria-label="Your Message"></textarea>
-            <button type="submit">Send Project Inquiry</button>
-        </form>
+        <p class="subtext">
+            If you’d like to work with me, feel free to reach out using the following contact details:
+        </p>
+        
+        <div class="contact-options-grid">
+            
+            <a href="https://t.me/+639300835292" target="_blank" class="cta-button telegram-button">
+                <span class="icon">⭢</span>
+                Chat on Telegram
+            </a>
+            
+            <a href="https://wa.me/639300835292" target="_blank" class="cta-button whatsapp-button">
+                <span class="icon">✆</span>
+                Chat on WhatsApp
+            </a>
 
-        <div class="contact-connect">
-            <p>Or connect directly:</p>
-            <div class="social-links">
-                <a href="mailto:jomaroslob@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Email Jomari Oslob">
-                    <i class="fas fa-envelope"></i>
-                </a>
-                <a href="tel:+639300835292" target="_blank" rel="noopener noreferrer" aria-label="Call Jomari Oslob">
-                    <i class="fas fa-phone"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/jomari-oslob-8a70b1248/" target="_blank" rel="noopener noreferrer" aria-label="Jomari Oslob LinkedIn Profile">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-            </div>
+            <a href="https://www.linkedin.com/in/jomari-oslob-8a70b1248/" target="_blank" class="cta-button linkedin-button">
+                <span class="icon">in</span>
+                Connect on LinkedIn
+            </a>
         </div>
+    </div>
+</section>
     </section>
     <button id="ctaButton" class="primary-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" aria-label="Hire Me Button, Scrolls to Contact Section">
         Hire Me
@@ -488,7 +471,6 @@
     <script src="script.js" defer></script> 
 </body>
 </html>
-
 
 
 
