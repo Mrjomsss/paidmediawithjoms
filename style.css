@@ -720,27 +720,147 @@ body.dark .featured-logo {
 
 
 /* Contact */
-#contact form {
-    display: grid; gap: 1rem; max-width: 600px; margin: 0 auto 2rem;
+.contact-section {
+    padding: 60px 20px;
+    text-align: center;
+    transition: background-color var(--transition-duration);
 }
-#contact input, #contact textarea {
-    padding: 1rem; border: 1px solid; border-radius: 5px;
-    font-size: 1rem; width: 100%;
-    transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
+
+/* Base colors for Dark Mode (Default look based on image) */
+.contact-section {
+    background-color: var(--dark-bg); 
 }
-#contact textarea { resize: vertical; }
-#contact button {
-    padding: 1rem 2rem; color: var(--light-bg); border: none;
-    border-radius: 5px; font-weight: 700; font-size: 1.1rem;
-    transition: background 0.3s;
+.contact-section .subtext {
+    color: #b0b0b0; /* Light gray for contrast */
 }
-.contact-connect { text-align: center; }
-.social-links a {
-    font-size: 2rem; margin: 0 0.5rem; color: var(--primary-color);
-    transition: transform 0.3s; display: inline-block;
+
+/* Light Mode Overrides */
+body.light .contact-section {
+    background-color: var(--light-card-bg); /* Use a soft background color for light mode */
 }
-.social-links a:hover {
-    transform: scale(1.1);
+body.light .contact-section .subtext {
+    color: var(--light-text);
+}
+
+
+.content-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Headline Styling: Gradient Text Effect (Stays the same in both modes) */
+.headline {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 15px;
+    background: linear-gradient(to right, #ff4c4c, #ff9a4c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Subtext Styling */
+.subtext {
+    font-size: 17px;
+    margin-bottom: 40px;
+    line-height: 1.5;
+    transition: color var(--transition-duration);
+}
+
+/* --- Multi-Option Layout for Buttons --- */
+.contact-options-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+
+/* --- Base CTA Button Styling --- */
+.cta-button {
+    flex-grow: 1;
+    min-width: 250px; 
+    max-width: 300px;
+    
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    
+    /* Text color changes with theme */
+    color: var(--dark-text);
+    background-color: transparent;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+    border: 2px solid; 
+}
+
+/* Light Mode Button Text Override */
+body.light .cta-button {
+    color: var(--light-text);
+}
+
+
+/* --- Platform-Specific Styles --- */
+
+/* Telegram */
+.telegram-button {
+    border-color: #0088cc;
+}
+.telegram-button:hover {
+    background-color: rgba(0, 136, 204, 0.1);
+    border-color: #00a4db;
+}
+.telegram-button .icon { color: #0088cc; }
+
+
+/* WhatsApp */
+.whatsapp-button {
+    border-color: #25d366;
+}
+.whatsapp-button:hover {
+    background-color: rgba(37, 211, 102, 0.1);
+    border-color: #38e87a;
+}
+.whatsapp-button .icon { color: #25d366; }
+
+
+/* LinkedIn */
+.linkedin-button {
+    border-color: #0a66c2;
+}
+.linkedin-button:hover {
+    background-color: rgba(10, 102, 194, 0.1);
+    border-color: #1a78d4;
+}
+.linkedin-button .icon { 
+    font-style: normal; 
+    font-weight: 900;
+    color: #0a66c2;
+    font-size: 14px;
+    padding: 2px 4px;
+}
+
+/* Icon Spacing */
+.cta-button .icon {
+    margin-right: 10px;
+    line-height: 1; 
+}
+
+/* Mobile Responsiveness for Buttons */
+@media (max-width: 768px) {
+    .contact-options-grid {
+        /* Ensure buttons stack nicely on mobile */
+        flex-direction: column;
+    }
+    .cta-button {
+        width: 100%;
+        max-width: none;
+    }
 }
 
 /* Sticky CTA button (UPDATED FOR FIXED POSITION AND MAROON COLOR) */
@@ -1121,4 +1241,3 @@ body.dark .industry-card {
         gap: 1.5rem;
     }
 }
-
